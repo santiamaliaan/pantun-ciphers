@@ -14,8 +14,6 @@ Aplikasi untuk mengenkripsi **plaintext** menjadi **cipher text yang terbaca** s
 2. **Codebook Lyric**: Hasil tahap 1 di-**UTF‑8** lalu di-**Base64**, setiap simbol Base64 dipetakan ke sebuah **kata** dari codebook JSON (unik & invertibel). Inilah *cipher text bergaya lirik*.
 3. **Pantun Mode (opsional)**: Token kata yang sudah jadi **dipecah** ke 4 baris. Algoritma memilih breakpoint agar kata terakhir baris 1 & 3 berakhiran sufiks grup **A** (mis. `u, ah, yu, du`) dan baris 2 & 4 grup **B** (mis. `i, ri, ni, ti`). **Tidak ada token yang diubah atau disisipkan**, sehingga dekripsi cukup mengabaikan tanda baca koma/titik.
 
-> Karena penentuan rima hanya memindah breakpoint, **invertibilitas 100%** tetap terjaga.
-
 ## Arsitektur Singkat
 ```
 src/
@@ -34,20 +32,11 @@ app_streamlit.py
 requirements.txt
 ```
 ---
-## Instalasi & Menjalankan
-Butuh Python 3.9+ (tanpa dependency eksternal).
-
-```bash
-cd lirik-pantun-cipher
-python3 -m src.cli test --theme data/themes/default_codebook.json
-# Self-test OK
-```
-
-## GUI (Streamlit)
+## Instalasi & Menjalankan (Python 3.9+).
 Untuk menjalankan antarmuka web lokal:
 
 ```bash
-python3 -m venv .venv  --> dijelasin doang
+python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 streamlit run app_streamlit.py
